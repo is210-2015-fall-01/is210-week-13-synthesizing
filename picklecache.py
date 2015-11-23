@@ -47,7 +47,7 @@ class PickleCache(object):
             >>> pcache['apples'] = 'oranges'
             >>>
         """
-        self.__data = dict([(key, value)])
+        self.__data[key] = value
         if self.autosync is True:
             self.flush()
 
@@ -68,12 +68,11 @@ class PickleCache(object):
             'oranges'
         """
         try:
-            item = self.__data[key]
-        except TypeError:
-            raise TypeError
-        except KeyError:
-            raise KeyError
-        return item
+            if self.__data[key]:
+                item = self.__data[key]
+                return item
+        except (TypeError, KeyError) as err:
+            raise err
 
     def __delitem__(self, key):
         """Detele item.
