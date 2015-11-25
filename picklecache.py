@@ -107,10 +107,10 @@ class PickleCache(object):
             'bar'
         """
         if os.path.exists(self.__file_path):
-           if os.path.getsize(self.__file_path) > 0:
-               openfile = open(self.__file_path, 'r')
-               self.__data = pickle.load(openfile)
-               openfile.close()
+            if os.path.getsize(self.__file_path) > 0:
+                openfile = open(self.__file_path, 'r')
+                self.__data = pickle.load(openfile)
+                openfile.close()
 
     def flush(self):
         """Saves information to file.
@@ -129,5 +129,3 @@ class PickleCache(object):
         openfile = open(self.__file_path, 'w')
         pickle.dump(self.__data, openfile)
         openfile.close()
-
-    
