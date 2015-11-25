@@ -88,8 +88,7 @@ class PickleCache(object):
             >>> print len(pcache)
             0
         """
-        if key in self.__data[key]:
-            del self.__data[key]
+        del self.__data[key]
         if self.autosync:
             self.flush()
 
@@ -128,7 +127,7 @@ class PickleCache(object):
             {'foo': 'bar'}
         """
         openfile = open(self.__file_path, 'w')
-        self.__data = pickle.dump(self.__data, openfile)
+        pickle.dump(self.__data, openfile)
         openfile.close()
 
     
